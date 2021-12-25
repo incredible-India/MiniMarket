@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+ Create Account
+{% endblock title %}
+
+{% block link %}
+{{block.super}}
+{% endblock link %}
+
+
+{% block content %}
+  <style>
+      .address{
+          height: 79px;
+      }
+  </style>
+{% include 'core/header.html' %}
+
+<div class="container">
+
+
+{% if messages %}
+{% for k in messages %} 
+
+<div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+    <strong>{{k}}</strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+{% endfor %}
+{% endif %}
+
+
+    <div class="row">
+
+
+        <div class="col-sm-8">
+            <h1 class="alert alert-info text-dark mt-2">
+                Create Account
+            </h1>
+           <form action="/user/verify" method="post">
+               {% csrf_token %}
+            {{userForm}}
+            <input type="submit" value="Submit" class="btn sm btn-primary">
+           </form>
+        </div>
+        <div class="col-sm-4">
+        
+            <img src="{% static 'users/img/cart.jpg' %}" alt="" class="img-fluid">
+        
+        </div>
+        </div>
+</div>
+
+{% endblock content %}
