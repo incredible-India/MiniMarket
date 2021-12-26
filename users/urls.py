@@ -6,6 +6,7 @@ urlpatterns = [
     path('createaccount/', u_view.index,name='home'),
     path('login/', u_view.loginForm.as_view(),name='login'),
     path('verify', u_view.verifyUserForm.as_view(),name='home'),
+    path('logout/', u_view.userLogout.as_view(),name='logout'),
     # for the user 
    
 ]

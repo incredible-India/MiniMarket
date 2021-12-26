@@ -15,7 +15,8 @@
           height: 79px;
       }
   </style>
-{% include 'core/header.html' %}
+
+{% include 'core/header.html' with userdata=userdata %}
 
 <div class="container">
 
@@ -44,6 +45,7 @@
                {% csrf_token %}
             {{userForm}}
             <input type="submit" value="Submit" class="btn sm btn-primary">
+            <a href="/user/login" class="btn btn-warning">Already Have Account</a>
            </form>
         </div>
         <div class="col-sm-4">

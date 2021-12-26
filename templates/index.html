@@ -10,7 +10,8 @@
 
 
 {% block content %}
-{% include 'core/header.html' %}
+
+{% include 'core/header.html' with p=userdata  %}
 
 {% comment %} images for carasoul {% endcomment %}
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
