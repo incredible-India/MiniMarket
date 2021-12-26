@@ -5,7 +5,7 @@
 {% block link %}
 {{block.super}}
 
-
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock link %}
 
 
@@ -39,4 +39,74 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+  <div class="container-fluid mt-3 grid-container mx-4">
+
+{% if vegitables %}
+
+{% for i in vegitables %}
+
+
+
+
+    <div class="card mt-3" style="width: 18rem;">
+      <img class="card-img-top sabji" src="{% static i.gimg %}" alt="Card image cap" height= 200px>
+      <div class="card-body alert-success">
+        <h5 class="card-title">{{i.gname}}</h5>
+        <p class="card-text">  
+          <Strong>₹ {{i.gprice}} /{{i.gamm}} </strong>      {{i.ginfo}}</p>
+        <a href="#" class="btn btn-outline-success">Buy Now</a>
+        <a href="#" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
+      </div>
+    </div>
+ 
+
+
+
+{% endfor %}
+
+{% else %}
+<h1 >Sorry No Data</h1>
+{% endif %}    
+
+  </div>
+
+
+  <div class="container-fluid mt-2 mkbox"  height= 300px>
+
+
+  </div>
+
+
+  <div class="container-fluid mt-3 grid-container mx-4">
+
+    {% if grocery %}
+    
+    {% for i in grocery %}
+    
+    
+    
+    
+        <div class="card mt-3" style="width: 18rem;">
+          <img class="card-img-top sabji" src="{% static i.vimg %}" alt="Card image cap" height= 200px>
+          <div class="card-body alert-success">
+            <h5 class="card-title">{{i.vname}}</h5>
+            <p class="card-text">  
+              <Strong>₹ {{i.vprice}} /{{i.vamm}} </strong>      {{i.vinfo}}</p>
+            <a href="#" class="btn btn-outline-success">Buy Now</a>
+            <a href="#" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
+          </div>
+        </div>
+     
+    
+    
+    
+    {% endfor %}
+    
+    {% else %}
+    <h1 >Sorry No Data</h1>
+    {% endif %}    
+    
+      </div>
+
 {% endblock content %}
