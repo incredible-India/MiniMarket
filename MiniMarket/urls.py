@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from . import views as p_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', p_view.index,name='home'),
     # for the user 
-    path('user/',include('users.urls'))
+    path('user/',include('users.urls')),
+    path('market/',include('marketAdmin.urls'))
 ]

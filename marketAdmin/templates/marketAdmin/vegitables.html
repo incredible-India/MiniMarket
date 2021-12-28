@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}MiniMarket Groceries{% endblock title %}
+
+{% block link %}
+{{block.super}}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock link %}
+
+
+{% block content %}
+
+{% include 'core/header.html' with p=userdata  %}
+
+<div class="container mt-3">
+
+<div class="row">
+
+    <div class="col-sm-2">
+        <a href="/market/groc" class="btn btn-outline-danger">Vegitables</a>
+    </div>
+
+<div class="col-sm-10 ">
+
+
+    
+    {% for i in grocery %}
+    
+    <div class="row">
+<div class="col-sm-4">
+
+    <img src="{% static i.vimg %}" alt="" width="200px" height="200px">
+
+</div>
+<div class="col-sm-8">
+    <h3 class="text-dark  alert-primary">
+        {{i.vname |capfirst}}
+    </h3>
+    <h4 class="text-dark">
+        {{i.vinfo |capfirst}}
+    </h4>
+
+    <h4 class="text-dark">
+       <strong>
+        ₹ {{i.vprice}} / {{i.vamm}}
+       </strong> 
+    </h4>
+
+   <div class="mt-1">
+    <a href="" class="btn btn-primary">Buy Now</a>
+    <a href="/user/mycart/{{i.id}}/{{i.vprice}}/{{i.vname}}" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> Cart</a>
+   </div>
+</div>
+    </div>
+
+    <hr>
+    
+    {% endfor %}
+    
+
+
+</div>
+
+</div>
+
+</div>
+
+{% if is_paginated %}
+
+<div class="row">
+    <div class="col-sm-4"></div>
+
+    <div class="col-sm-8">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+              {% endif %}
+              <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+              <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+              <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">..</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{page_obj.paginator.num_pages}}">{{page_obj.paginator.num_pages}}</a></li>
+              {% if page_obj.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}

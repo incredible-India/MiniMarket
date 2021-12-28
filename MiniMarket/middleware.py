@@ -11,22 +11,24 @@ class checkUserStatus:
             if 'email' in request.session:
                 try:
                     
+              
                     checkingData = models.Users.objects.get(email = request.session['email'])
 
-                  
+                    request.islogin = True
                     request.userdata = {
                             'uname' : checkingData.name,
                             'o1' : 'My Cart',
-                            'o1link' : 'My Cart',
+                            'o1link' : '/user/show/mycart/',
                             'o2' : 'My Orders',
                             'olink' : '',
                             'o3':'Log Out',
-                            'o3link':'/user/logout'
+                            'o3link':'/user/logout',
+                   
 
                     }
                     # no ndeed to write this code
                 except Exception as e:
-            
+                    request.islogin = False
                     request.userdata = {
                         'uname' : 'User',
                         'o1' : 'Sign in',
@@ -35,6 +37,7 @@ class checkUserStatus:
                         'o2link' : '/user/createaccount/',
                                         }
         else:
+            request.islogin = False
             request.userdata = {
                         'uname' : 'User',
                         'o1' : 'Sign in',

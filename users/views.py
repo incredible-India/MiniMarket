@@ -3,13 +3,15 @@ from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from .forms import Userinfo
 from django.views import View
 from django.contrib import messages
-from .models import Users
+from .models import Users,cart
 from django.utils.decorators import method_decorator
 from .middleware import userAuthentication
 from django.db.models import Q 
-from django.contrib.auth import authenticate
+
+
 # global middleware
 from MiniMarket.middleware import checkUserStatus
+from marketAdmin.models import vegitables,grocrey
 # Create your views here.
 
 # for the new User Create account
@@ -117,4 +119,77 @@ class userLogout(View):
         return HttpResponseRedirect('/')
 
         
+
+
+# add to cart option for the user
+
+class AddtoCart(View):
+
+    def get(self, request,id,price,name):
+
+        if 'name' not in request.session and  'email' not in request.session:
+            return HttpResponseRedirect('/user/login')
+           
+ 
+            
+        else:
+        
+ 
+            myitemv = vegitables.objects.filter(Q(vname=name) & Q(vprice=price) & Q(id=id))
+   
+            myitemg = grocrey.objects.filter(Q(gname=name) & Q(gprice=price) & Q(id=id))
+
+      
+        
+        
+        # print(getattr(myitemg, myitemg.other_field))
+      
+            if myitemg.count() != 0:
+                for i in myitemg:
+                    name = i.gname
+                    price = i.gprice
+       
+   
+                cart.objects.create(uid = Users.objects.get(email=request.session['email']), item_name =name,item_price =price).save()
+                messages.info(request,'Item sdded successfully to cart')
+                return HttpResponseRedirect('/market/groc')
+            if myitemv.count() != 0:
+                for i in myitemv:
+                    name = i.vname
+                    price = i.vprice
+        
+          
+                cart.objects.create(uid = Users.objects.get(email=request.session['email']),item_name =name,item_price =price).save()
+                messages.info(request,'Item sdded successfully to cart')
+                return HttpResponseRedirect('/market/vegs')
+                
+            return HttpResponseRedirect('/')
+
+
+@checkUserStatus
+def mycart(request):
+    if request.islogin :
+        # first getting the id of the user
+        mycart =[]
+        userEmail = request.session['email']
+        ownerID = cart.objects.filter()
+        for i in ownerID:
+            if i.uid.email == userEmail:
+      
+                mycart.append({'name':i.item_name,'price':i.item_price})
+       
+                
+
+
+        
+        
+   
+        
+        return render(request, 'users/mycart.html',{'userdata':request.userdata,'mycart':mycart})
+
+
+
+        
+    else:
+        return HttpResponseRedirect('/user/login/')
         

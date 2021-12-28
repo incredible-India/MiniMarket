@@ -4,6 +4,7 @@ from django.views import View
 from .middleware import checkUserStatus
 from django.utils.decorators import method_decorator
 from marketAdmin import models as mt
+
 # view for the newUser account creation
 
 @checkUserStatus

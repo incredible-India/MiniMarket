@@ -1,3 +1,4 @@
+from types import NoneType
 from django.shortcuts import HttpResponseRedirect
 
 class userAuthentication:
@@ -14,3 +15,6 @@ class userAuthentication:
         
         response = self.get_response(request)
         return response
+
+
+

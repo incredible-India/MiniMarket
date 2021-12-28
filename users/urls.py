@@ -7,6 +7,8 @@ urlpatterns = [
     path('login/', u_view.loginForm.as_view(),name='login'),
     path('verify', u_view.verifyUserForm.as_view(),name='home'),
     path('logout/', u_view.userLogout.as_view(),name='logout'),
+    path('mycart/<int:id>/<int:price>/<str:name>/', u_view.AddtoCart.as_view(),name='cart'),
+    path('show/mycart/', u_view.mycart,name='mycart'),
     # for the user 
    
 ]

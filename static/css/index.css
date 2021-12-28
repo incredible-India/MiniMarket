@@ -22,3 +22,15 @@ body{
     width: 100%;
     background-size: cover;
   }
+
+  ::-webkit-scrollbar{
+
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb{
+    
+    background-image: linear-gradient(#2196F3,green);
+   
+      border-radius: 20px;
+  }

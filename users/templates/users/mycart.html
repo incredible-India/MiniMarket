@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% comment %} {% extends 'core/base.html' %} {% endcomment %}
+{% block title %}My Cart{% endblock title %}
+
+
+{% block content %}
+
+
+{% include 'core/header.html' with p=userdata %}
+
+
+
+{% for k in mycart %}
+
+<h1>{{k.name}}</h1>
+<h1>{{k.price}}</h1>
+
+{% endfor %}
+
+ 
+{% endblock content %}

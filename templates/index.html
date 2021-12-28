@@ -12,7 +12,18 @@
 {% block content %}
 
 {% include 'core/header.html' with p=userdata  %}
+{% if messages %}
+{% for k in messages %} 
 
+<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+    <strong>{{k}}</strong>
+    
+   
+  </div> 
+
+
+{% endfor %}
+{% endif %}
 {% comment %} images for carasoul {% endcomment %}
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -56,7 +67,7 @@
         <p class="card-text">  
           <Strong>₹ {{i.gprice}} /{{i.gamm}} </strong>      {{i.ginfo}}</p>
         <a href="#" class="btn btn-outline-success">Buy Now</a>
-        <a href="#" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
+        <a href="/user/mycart/{{i.id}}/{{i.gprice}}/{{i.gname}}/" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
       </div>
     </div>
  
@@ -94,7 +105,7 @@
             <p class="card-text">  
               <Strong>₹ {{i.vprice}} /{{i.vamm}} </strong>      {{i.vinfo}}</p>
             <a href="#" class="btn btn-outline-success">Buy Now</a>
-            <a href="#" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="/user/mycart/{{i.id}}/{{i.vprice}}/{{i.vname}}" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
           </div>
         </div>
      
@@ -108,5 +119,6 @@
     {% endif %}    
     
       </div>
+
 
 {% endblock content %}
