@@ -176,16 +176,23 @@ def mycart(request):
         for i in ownerID:
             if i.uid.email == userEmail:
       
-                mycart.append({'name':i.item_name,'price':i.item_price})
+                mycart.append({'name':i.item_name,'price':i.item_price,'id':i.id})
        
                 
 
 
         
         
-   
-        
-        return render(request, 'users/mycart.html',{'userdata':request.userdata,'mycart':mycart})
+        pprice =0
+        if len(mycart) !=0:
+            
+            for i in mycart:
+                for j in i:
+                 
+                    if j == 'price':
+                        pprice = pprice + i[j]
+                        
+        return render(request, 'users/mycart.html',{'userdata':request.userdata,'mycart':mycart,'Cartlen':len(mycart),'tammount':pprice})
 
 
 
@@ -193,3 +200,71 @@ def mycart(request):
     else:
         return HttpResponseRedirect('/user/login/')
         
+
+
+
+def deleteFromCart(request,id):
+    userEmail= request.session['email']
+    if cart.objects.get(pk=id).uid.email == userEmail: 
+        cart.objects.filter(id=id).delete()
+        return HttpResponseRedirect('/user/show/mycart')
+    else:
+        return HttpResponseRedirect('/user/login/')
+
+@checkUserStatus
+def deleteAllFRMCART(request):
+    if request.islogin :
+        cart.objects.all().delete()
+        return HttpResponseRedirect('/user/show/mycart')
+    else:
+        return HttpResponseRedirect('/user/login/')
+    
+
+
+
+
+def BuyFRMCart(request,totalIt,totalAm):
+    if 'name' in request.session and 'email' in request.session:
+        em=Users.objects.filter(email=request.session['email'])
+        address = ''
+        name =''
+        for i in em:
+            address=i.address
+            name = i.name
+        userdata = {'uname' : name,
+                            'o1' : 'My Cart',
+                            'o1link' : '/user/show/mycart/',
+                            'o2' : 'My Orders',
+                            'olink' : '',
+                            'o3':'Log Out',
+                            'o3link':'/user/logout',}
+        request.session['cnf'] ='cnfDATA'
+        return render(request,'users/buyCart.html',{'address':address,'totalAm':totalAm,'totalIt':totalIt,'userdata':userdata,'cnf':False})
+
+    else:
+        return HttpResponseRedirect('/user/login/')
+
+
+
+def CnfBuyFRMCart(request):
+    if 'name' in request.session and 'email' in request.session:
+        em=Users.objects.filter(email=request.session['email'])
+   
+        name =''
+        for i in em:
+          
+            name = i.name
+        userdata = {'uname' : name,
+                            'o1' : 'My Cart',
+                            'o1link' : '/user/show/mycart/',
+                            'o2' : 'My Orders',
+                            'olink' : '',
+                            'o3':'Log Out',
+                            'o3link':'/user/logout',}
+        if request.session['cnf'] == 'cnfDATA':
+            request.session['cnf']  =False
+            return render(request,'users/buyCart.html',{'userdata':userdata,'cnf':True})
+        else:
+            return HttpResponseRedirect('/user/show/mycart/')
+    else:
+        return HttpResponseRedirect('/user/login/')

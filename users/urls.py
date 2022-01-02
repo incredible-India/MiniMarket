@@ -9,6 +9,10 @@ urlpatterns = [
     path('logout/', u_view.userLogout.as_view(),name='logout'),
     path('mycart/<int:id>/<int:price>/<str:name>/', u_view.AddtoCart.as_view(),name='cart'),
     path('show/mycart/', u_view.mycart,name='mycart'),
+    path('deleteitem/<int:id>/', u_view.deleteFromCart,name='dmycart'),
+    path('delete/all/', u_view.deleteAllFRMCART,name='damycart'),
+    path('buy/all/<int:totalAm>/<int:totalIt>/', u_view.BuyFRMCart,name='damycart'),
+    path('confirmBuy/', u_view.CnfBuyFRMCart,name='damycart'),
     # for the user 
    
 ]

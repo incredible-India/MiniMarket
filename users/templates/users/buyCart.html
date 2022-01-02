@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% comment %} {% extends 'core/base.html' %} {% endcomment %}
+{% block title %}My Cart{% endblock title %}
+{% load static %}
+
+{% block content %}
+
+{% include 'core/header.html' with p=userdata %}
+
+{% if cnf %}
+
+    <div class="container text-center">
+        <img class='img-fluid text-center' src="{% static 'img/cnf.jpg' %}" alt="" width="400px" height="300px">
+
+        <h1 class="mt-3 text-dark alert-success">Congrats Order Confirmed</h1>
+        <hr class="text-dark">
+        <h2 class="mt-3 text-dark alert-info">It Will Be Deleverd Within 25 Min</h2>
+        <a href="/" class="btn btn-outline-success">Shopping Again</a>
+    </div>
+
+{% else %}
+
+<div class="container">
+    <h1 class="text-dark alert-primary mt-2">Order Summary</h1>
+    <hr class ='text-dark'>
+    <h4 class="text-dark  mt-2 ">Total items : {{totalAm}}</h4>
+    <h4 class="text-dark  mt-2 ">Total Amount : ₹ {{totalIt}} </h4>
+    <hr class ='text-dark'>
+    <h1 class="text-dark alert-secondary mt-2">Payment Method</h1>
+    <h4 class="text-dark  mt-2 ">Cash On Delevary</h4>
+    <hr class ='text-dark'>
+    <h1 class="text-dark alert-info mt-2">Delevary Address</h1>
+    <h4 class="text-dark  mt-2 ">{{address}}</h4>
+    <hr class ='text-dark'>
+
+    <div class="containet mt-3">
+        <a href="/user/confirmBuy/" class="btn btn-outline-success">Confirm Buy</a>
+        <a href="/user/show/mycart/" class="btn btn-outline-warning">Go Back</a>
+    </div>
+</div>
+
+{% endif %}
+
+
+{% endblock content %}

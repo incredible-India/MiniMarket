@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% comment %} {% extends 'core/base.html' %} {% endcomment %}
 {% block title %}My Cart{% endblock title %}
-
+{% load static %}
 
 {% block content %}
 
@@ -9,13 +9,64 @@
 {% include 'core/header.html' with p=userdata %}
 
 
+{% if  mycart %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-sm-7 mt-2">
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Ammount</th>
+          <th scope="col">Item</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
 
 {% for k in mycart %}
 
-<h1>{{k.name}}</h1>
-<h1>{{k.price}}</h1>
+
+            <tr>
+                <th scope="row">1</th>
+                <td>{{k.name}}</td>
+                <td>{{k.price}}</td>
+                <td>
+                    <a href="/user/deleteitem/{{k.id}}/" class="btn btn-outline-danger">Remove</a>
+                </td>
+       
+              </tr>
+           
+            
+   
+
 
 {% endfor %}
+</tbody>
+</table>
+<h3 class='display-6'>Total Items : {{Cartlen}}  Total Ammount : {{tammount}}</h3>
+<a href="/user/buy/all/{{Cartlen}}/{{tammount}}/" class="btn btn-outline-success mt-3 mx-2">Check out</a>
+<a href="/user/delete/all" class="btn btn-outline-danger mt-3 mx-2">Clear All</a>
+</div>
+<div class="col-sm-5">
+    <img src="{% static '/img/cart.svg'%}" alt="" class="img-fluid" style="height:300px;">
+</div>
+</div>
+</div>
 
+{% else %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-sm-5">
+            <img src="{% static '/img/cart.svg'%}" alt="" class="img-fluid" style="height:300px;">
+        </div>
+        <div class="col-sm-7 mt-2">
+            <h1 class='text-dark alert-success'>Empty Cart</h1>
+            <a href="/" class="btn btn-outline-primary mt-3">Start Shopping</a>
+        </div>
+    </div>
+  
+</div>
+{% endif %}
  
 {% endblock content %}
