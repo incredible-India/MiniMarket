@@ -19,8 +19,7 @@ class checkUserStatus:
                             'uname' : checkingData.name,
                             'o1' : 'My Cart',
                             'o1link' : '/user/show/mycart/',
-                            'o2' : 'My Orders',
-                            'olink' : '',
+                        
                             'o3':'Log Out',
                             'o3link':'/user/logout',
                    

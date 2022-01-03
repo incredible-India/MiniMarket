@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% comment %} {% extends 'core/base.html' %} {% endcomment %}
+{% block title %}Order Confirm{% endblock title %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-2">
+        <img src="{% static '/users/img/cart.jpg' %}" alt="" class="img-fluid text-center" width="300px" height='300px'>
+        <h1>Order Has been Confirm And Will Be delivered Within 25 Min</h1>
+        <a href="/" class="btn btn-success"> Continue Shopping</a>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

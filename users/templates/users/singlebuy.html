@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% comment %} {% extends 'core/base.html' %} {% endcomment %}
+{% block title %}My Cart{% endblock title %}
+{% load static %}
+
+{% block content %}
+
+{% include 'core/header.html' with p=userdata %}
+
+{% if veg %}
+
+<div class="container">
+<div class="row">
+
+    <div class="col-sm-4">
+        <img src="{% static myItems.gimg %}" alt="fruits" class="img-fluid">
+    </div>
+
+    <div class="col-sm-8 ">
+            <h1 class="text-dark alert-primary mt-3 mx-1">{{myItems.gname}}</h1>    
+            <h3 class="text-dark alert-info mt-3 mx-1">{{myItems.ginfo}}</h1>
+                <h3 class="text-dark alert-info mt-3 mx-1">  ₹ {{myItems.gprice}} / {{myItems.gamm}}</h3>
+                <a href="/user/confirm/buy/" class="btn btn-primary">Confirm Buy</a>  </div>
+</div>
+
+</div>
+
+{% else %}
+
+<div class="container">
+    <div class="row">
+    <h1>{{myitems.gimg}}</h1>
+        <div class="col-sm-4">
+            <img src="{% static myItems.vimg %}" alt="fruits" class="img-fluid">
+        </div>
+        <div class="col-sm-8 ">
+            <h1 class="text-dark alert-primary mt-3 mx-1">{{myItems.vname}}</h1>
+            <h3 class="text-dark alert-info mt-3 mx-1">{{myItems.vinfo}}</h1>
+            <h3 class="text-dark alert-info mt-3 mx-1">  ₹ {{myItems.vprice}} / {{myItems.vamm}}</h3>
+                
+            <a href="/user/confirm/buy/" class="btn btn-primary">Confirm Buy</a>      </div>
+    </div>
+    
+    </div>
+{% endif %}
+
+
+
+
+{% endblock content %}

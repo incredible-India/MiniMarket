@@ -66,7 +66,7 @@
         <h5 class="card-title">{{i.gname}}</h5>
         <p class="card-text">  
           <Strong>₹ {{i.gprice}} /{{i.gamm}} </strong>      {{i.ginfo}}</p>
-        <a href="#" class="btn btn-outline-success">Buy Now</a>
+        <a href="/user/buysingle/{{i.id}}/groc" class="btn btn-outline-success">Buy Now</a>
         <a href="/user/mycart/{{i.id}}/{{i.gprice}}/{{i.gname}}/" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
       </div>
     </div>
@@ -104,7 +104,7 @@
             <h5 class="card-title">{{i.vname}}</h5>
             <p class="card-text">  
               <Strong>₹ {{i.vprice}} /{{i.vamm}} </strong>      {{i.vinfo}}</p>
-            <a href="#" class="btn btn-outline-success">Buy Now</a>
+            <a href="/user/buysingle/{{i.id}}/{{veg|default:'veg'}}" class="btn btn-outline-success">Buy Now</a>
             <a href="/user/mycart/{{i.id}}/{{i.vprice}}/{{i.vname}}" class="btn btn-outline-dark"> <i class="fas fa-shopping-cart"></i> Cart</a>
           </div>
         </div>

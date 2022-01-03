@@ -13,6 +13,9 @@ urlpatterns = [
     path('delete/all/', u_view.deleteAllFRMCART,name='damycart'),
     path('buy/all/<int:totalAm>/<int:totalIt>/', u_view.BuyFRMCart,name='damycart'),
     path('confirmBuy/', u_view.CnfBuyFRMCart,name='damycart'),
+    path('buysingle/<int:id>/veg/', u_view.DRCTBuyFrmcrd,name='damaycart'),
+    path('buysingle/<int:id>/groc/', u_view.DRCTBuyFrmcrdGroce,name='damaycart'),
+    path('confirm/buy/', u_view.confirmBuy,name='damaycart'),
     # for the user 
    
 ]

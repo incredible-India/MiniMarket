@@ -28,16 +28,16 @@
                   <li class="nav-item">
                     <a class="nav-link " href='/market/groc'> <i class="fas fa-carrot"></i> Vegetables</a>
                   </li>
-                  <li class="nav-item">
+                  {% comment %} <li class="nav-item">
                     <a class="nav-link "><i class="fas fa-percent"></i></i> Offers</a>
-                  </li>
+                  </li> {% endcomment %}
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i>
                       {{userdata.uname}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="{{userdata.o1link}}"> {{userdata.o1}}</a></li>
-                      <li><a class="dropdown-item" href="{{userdata.o2link}}">{{userdata.o2}}</a></li>
+                      {% comment %} <li><a class="dropdown-item" href="{{userdata.o2link}}">{{userdata.o2}}</a></li> {% endcomment %}
                    
                       {% if userdata.o3 %}
                       <li><hr class="dropdown-divider"></li>

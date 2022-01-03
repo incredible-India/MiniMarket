@@ -148,6 +148,7 @@ class AddtoCart(View):
                 for i in myitemg:
                     name = i.gname
                     price = i.gprice
+                    # gamm = i.gamm
        
    
                 cart.objects.create(uid = Users.objects.get(email=request.session['email']), item_name =name,item_price =price).save()
@@ -157,6 +158,7 @@ class AddtoCart(View):
                 for i in myitemv:
                     name = i.vname
                     price = i.vprice
+                    # vamm = i.vamm
         
           
                 cart.objects.create(uid = Users.objects.get(email=request.session['email']),item_name =name,item_price =price).save()
@@ -234,8 +236,7 @@ def BuyFRMCart(request,totalIt,totalAm):
         userdata = {'uname' : name,
                             'o1' : 'My Cart',
                             'o1link' : '/user/show/mycart/',
-                            'o2' : 'My Orders',
-                            'olink' : '',
+                       
                             'o3':'Log Out',
                             'o3link':'/user/logout',}
         request.session['cnf'] ='cnfDATA'
@@ -257,8 +258,7 @@ def CnfBuyFRMCart(request):
         userdata = {'uname' : name,
                             'o1' : 'My Cart',
                             'o1link' : '/user/show/mycart/',
-                            'o2' : 'My Orders',
-                            'olink' : '',
+                        
                             'o3':'Log Out',
                             'o3link':'/user/logout',}
         if request.session['cnf'] == 'cnfDATA':
@@ -268,3 +268,69 @@ def CnfBuyFRMCart(request):
             return HttpResponseRedirect('/user/show/mycart/')
     else:
         return HttpResponseRedirect('/user/login/')
+
+
+def DRCTBuyFrmcrd(request,id):
+    if 'name' in request.session and 'email' in request.session:
+        em=Users.objects.filter(email=request.session['email'])
+        name =''
+        for i in em:
+          
+            name = i.name
+        userdata = {'uname' : name,
+                            'o1' : 'My Cart',
+                            'o1link' : '/user/show/mycart/',
+                         
+                            'o3':'Log Out',
+                            'o3link':'/user/logout',}
+      
+        myItems = vegitables.objects.get(pk=id)
+        
+
+           
+     
+        
+        return render(request,'users/singlebuy.html',{'userdata':userdata,'myItems':myItems,'veg':False})
+
+    
+    else:
+        return HttpResponseRedirect('/user/login/')
+
+
+
+def DRCTBuyFrmcrdGroce(request,id):
+    if 'name' in request.session and 'email' in request.session:
+        em=Users.objects.filter(email=request.session['email'])
+        name =''
+        for i in em:
+          
+            name = i.name
+        userdata = {'uname' : name,
+                            'o1' : 'My Cart',
+                            'o1link' : '/user/show/mycart/',
+                        
+                            'o3':'Log Out',
+                            'o3link':'/user/logout',}
+      
+        myItems = grocrey.objects.get(pk=id)
+        
+
+           
+       
+        
+        return render(request,'users/singlebuy.html',{'userdata':userdata,'myItems':myItems,'veg':True})
+
+    
+    else:
+        return HttpResponseRedirect('/user/login/')
+
+@checkUserStatus
+def confirmBuy(request):
+    if request.islogin :
+        return render(request,'users/orderCNF.html')
+    else:
+        return HttpResponseRedirect('/user/login/')
+
+
+
+
