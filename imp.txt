@@ -1,3 +1,0 @@
-vegitables and grocery are exchanged f
-for the vegitables and grocery default loaction is project/static/imagesv and imagesg but we copy in project/static/static/imagesv and imageg 
-if you enter new data for the vegitables or grocery please copy it in project/static/static/imagesg or imagesv
