@@ -27,7 +27,7 @@ decorator==5.1.0
 defusedxml==0.7.1
 distlib==0.3.6
 dj-database-url==1.0.0
-Django==4.0
+Django==3.2.15
 django-cors-headers==3.10.1
 django-extensions==3.1.5
 django-heroku==0.3.1
